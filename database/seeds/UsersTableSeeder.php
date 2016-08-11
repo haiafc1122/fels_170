@@ -22,7 +22,7 @@ class UsersTableSeeder extends Seeder
                 'avatar' => $faker->imageUrl,
                 'is_admin' => $faker->valid()->randomElement(['0','1'], $count = 1),
                 'created_at' => Carbon::now(),
-                ]);
+            ]);
         }
     }
 }
