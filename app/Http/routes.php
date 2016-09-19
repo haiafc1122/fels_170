@@ -35,7 +35,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('word', 'WordController', ['only' => 'index']);
     Route::get('/user/{user}/following', 'UserController@getFollowing');
     Route::get('/user/{user}/followers', 'UserController@getFollowers');
-    Route::resource('lesson', 'LessonController', ['only' => ['store', 'show', 'update']]);
+    Route::resource('lesson', 'LessonController', ['only' => ['store', 'show', 'update', 'index']]);
 });
 
 Route::resource('user','UserController');

@@ -11,9 +11,9 @@
             <ul class="nav navbar-nav">
                 @if (Auth::check() && Auth::user()->isAdmin() == false)
                     <li><a href="{{ url('/home') }}">HOME</a></li>
-                    <li><a href="{{ url('/') }}">WORD</a></li>
+                    <li><a href="{{ url('/word') }}">WORD</a></li>
                     <li><a href="{{ url('/category') }}">CATEGORY</a></li>
-                    <li><a href="{{ url('/') }}">LESSON</a></li>
+                    <li><a href="{{ url('/lesson') }}">LESSON</a></li>
                     <li><a href="{{ url('/') }}">USERS</a></li>
                 @endif
             </ul>
