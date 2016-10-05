@@ -32,9 +32,14 @@
                             <td>{{ $category->created_at }}</td>
                             <td>{{ $category->updated_at }}</td>
                             <td class="center">
-                                <a href="{{ url('#') }}" class="btn btn-default">
-                                    Create and start lesson
-                                </a>
+                                <form action="{{ url('lesson') }}" method="POST">
+                                    {{ csrf_field() }}
+
+                                    <input id="category_id" type="hidden" value="{{ $category->id }}" name="category_id">
+                                    <button type="submit" class="btn btn-default">
+                                        Create and start lesson
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                         @endforeach

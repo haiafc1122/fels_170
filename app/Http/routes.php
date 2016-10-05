@@ -33,9 +33,13 @@ Route::group(['middleware' => 'auth'], function () {
         'store', 'destroy'
     ]]);
     Route::resource('word', 'WordController', ['only' => 'index']);
+    Route::get('/update_password', function () {
+        return view('user.password');
+    });
+    Route::post('/password', 'UserController@updatePassword');
     Route::get('/user/{user}/following', 'UserController@getFollowing');
     Route::get('/user/{user}/followers', 'UserController@getFollowers');
-    Route::resource('lesson', 'LessonController', ['only' => ['store', 'show', 'update']]);
+    Route::resource('lesson', 'LessonController', ['only' => ['store', 'show', 'update', 'index']]);
 });
 
 Route::resource('user','UserController');

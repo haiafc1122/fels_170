@@ -11,6 +11,7 @@ use File;
 use App\Repositories\ImageRepository;
 use App\Policies\UserPolicy;
 use Gate;
+use Hash;
 
 class UserController extends Controller
 {
@@ -103,7 +104,7 @@ class UserController extends Controller
         if (User::find($request->id) == null) {
             return back()->with('fail', 'Not found data :(');
         } else {
-            if ($img != null) {
+            if ($img != null && $request->name != null && $request->email != null) {
                 $destinationPath = public_path('/avatar/');
                 $file = User::find($request->id)->avatar;
                 File::delete($destinationPath.$file);
@@ -113,11 +114,13 @@ class UserController extends Controller
                     'email' => $request->email,
                     'avatar' => $imagename,
                 ]);
-            } else {
+            } elseif ($img == null && $request->name != null && $request->email != null) {
                 User::find($request->id)->update([
                     'name' => $request->name,
                     'email' => $request->email,
                 ]);
+            } else {
+                return back()->with('fail', 'Update Profile Fail');
             }
 
         }
@@ -166,5 +169,22 @@ class UserController extends Controller
                 'followers' => $followers
             ]);
         }
+    }
+
+    public function updatePassword(Request $request)
+    {
+        $min = config('settings.password.min');
+        $max = config('settings.password.max');
+        $validate = Validator::make($request->all(),
+            ['password' => "min:$min|max:$max"]);
+
+        if ($validate->fails()) {
+            return back()->with('message', 'Update Password Fail');
+        }
+
+        $request->user()->fill([
+            'password' => bcrypt($request->password)
+        ])->save();
+        return redirect('/')->with('message', 'Update Password Success');
     }
 }

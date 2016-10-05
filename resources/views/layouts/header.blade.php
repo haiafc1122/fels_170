@@ -11,9 +11,9 @@
             <ul class="nav navbar-nav">
                 @if (Auth::check() && Auth::user()->isAdmin() == false)
                     <li><a href="{{ url('/home') }}">HOME</a></li>
-                    <li><a href="{{ url('/') }}">WORD</a></li>
+                    <li><a href="{{ url('/word') }}">WORD</a></li>
                     <li><a href="{{ url('/category') }}">CATEGORY</a></li>
-                    <li><a href="{{ url('/') }}">LESSON</a></li>
+                    <li><a href="{{ url('/lesson') }}">LESSON</a></li>
                     <li><a href="{{ url('/') }}">USERS</a></li>
                 @endif
             </ul>
@@ -31,6 +31,7 @@
                     <ul class="dropdown-menu" role="menu">
                         <li><a href='/user/{{Auth::user()->id}}'><i class="fa fa-btn fa-user"></i>Profile</a></li>
                         <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
+                        <li><a href="{{ url('/update_password') }}"><i class="fa fa-btn fa-edit"></i>Change Password</a></li>
                     </ul>
                 </li>
                 @endif
