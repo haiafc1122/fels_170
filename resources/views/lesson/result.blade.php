@@ -17,6 +17,7 @@
         </div>
 
         <div class="panel-body">
+            <button onclick="printPDF()">Print PDF</button>
             <div class="row">
                 <div class="col-lg-12">
                     <table class="table table-striped">
@@ -50,4 +51,9 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    function printPDF() {
+        window.print();
+        }
+</script>
 @endsection
