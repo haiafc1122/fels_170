@@ -25,9 +25,7 @@
                             {{ csrf_field() }}
                             {{ method_field('PATCH') }}
 
-                            <button type="submit" class="btn btn-default">
-                                Finish
-                            </button>
+                            <button onclick="printPDF()">Print PDF</button>
                             <tbody>
                                 @foreach ($words as $key => $word)
                                     <tr>
@@ -68,5 +66,8 @@
     }).on('finish.countdown', function(event) {
         $("#test").submit();
     });
+    function printPDF() {
+        window.print();
+        }
 </script>
 @endsection

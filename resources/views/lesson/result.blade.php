@@ -13,6 +13,7 @@
     @endif
     <div class="panel panel-default">
         <div class="panel-heading">
+            <button onclick="printPDF()">Print PDF</button>
             <h3><strong>Lesson {{ $lesson->id }}:  Result</strong></h3>
         </div>
 
@@ -50,4 +51,9 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    function printPDF() {
+        window.print();
+        }
+</script>
 @endsection
